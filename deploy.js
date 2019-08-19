@@ -16,9 +16,9 @@ function setupVenv(venv_folder){
 }
 
 function installDependencies(venv_folder, current_folder){
-    let sourceIt = `source ${venv_folder}/bin/activate`;
+    // let sourceIt = `source ${venv_folder}/bin/activate`;
     let cdToCurrent = `cd ${current_folder}`;
-    sEx(`${sourceIt} && pip install -r ${current_folder}/requirements.txt`);
+    sEx(`pip install -r ${current_folder}/requirements.txt`);
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
 
