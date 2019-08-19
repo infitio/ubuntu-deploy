@@ -13,7 +13,12 @@ async function stage1(runner){
     await build(runner);
     console.log("deploy...");
     await deploy(runner);
-    console.log(`Stage 1 complete: Now run \n source ${runner.venv_folder}/bin/activate && sudo node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2`);
+    console.log(`Stage 1 complete: Now run the following commands: 
+    
+    source ${runner.venv_folder}/bin/activate
+    pip install -r ${runner.current_folder}/requirements.txt
+    `);
+    //sudo node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
 }
 
 async function stage3(runner){
@@ -29,7 +34,6 @@ async function run(){
         venv_folder: config.project_folder+'/run/venv'
     };
     let isRoot = os.userInfo().uid===0;
-    console.log("os.userInfo()", os.userInfo());
     switch (args.stage) {
         case "1": return /*isRoot && */await stage1(runner);
         // case "2": return /*isRoot && */await stage2(runner);
