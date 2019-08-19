@@ -16,6 +16,8 @@ function setupVenv(venv_folder){
 }
 
 function installDependencies(venv_folder, current_folder){
+    sEx(`which python`);
+    sEx(`python --version`);
     // let sourceIt = `source ${venv_folder}/bin/activate`;
     let cdToCurrent = `cd ${current_folder}`;
     sEx(`pip install -r ${current_folder}/requirements.txt`);
