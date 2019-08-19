@@ -31,6 +31,7 @@ async function run(){
         venv_folder: config.project_folder+'/run/venv'
     };
     let isRoot = os.userInfo().uid===0;
+    console.log("os.userInfo()", os.userInfo());
     if(args.stage==="1"){
         isRoot && await stage1(runner);
     }
