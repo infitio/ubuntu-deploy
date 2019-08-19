@@ -2,7 +2,8 @@
 
 PROJECT_CODE=$1
 TOKEN=$2
-sudo node main -p $PROJECT_CODE -t $TOKEN -s 1
-sudo node main -p $PROJECT_CODE -t $TOKEN -s 2
-source /opt/python/hello-gromor/run/venv/bin/activate
-sudo node main -p $PROJECT_CODE -t $TOKEN -s 3
+STAGE=$3
+sudo node main -p $PROJECT_CODE -t $TOKEN -s $3
+#sudo node main -p $PROJECT_CODE -t $TOKEN -s 2
+#source /opt/python/hello-gromor/run/venv/bin/activate
+#sudo node main -p $PROJECT_CODE -t $TOKEN -s 3

@@ -9,13 +9,11 @@ const args = require('./args');
 async function stage1(runner){
     console.log("setup...");
     setup(runner);
-}
-
-async function stage2(runner){
     console.log("build...");
     await build(runner);
     console.log("deploy...");
     await deploy(runner);
+    console.log(`Stage 1 complete: Now run \n source ${runner.venv_folder}/bin/activate && sh run.sh ${args.project_code} ${args.token} 2`);
 }
 
 async function stage3(runner){
@@ -37,7 +35,7 @@ async function run(){
     }
     switch (args.stage) {
         case "1": return /*isRoot && */await stage1(runner);
-        case "2": return /*isRoot && */await stage2(runner);
+        // case "2": return /*isRoot && */await stage2(runner);
         case "3": return /*isRoot && */await stage3(runner);
         default: console.log("No match");
     }
