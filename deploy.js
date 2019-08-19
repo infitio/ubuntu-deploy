@@ -19,13 +19,18 @@ function installDependencies(venv_folder, current_folder){
     let sourceIt = `source ${venv_folder}/bin/activate`;
     let cdToCurrent = `cd ${current_folder}`;
     sEx(`${sourceIt} && pip install -r ${current_folder}/requirements.txt`);
-    sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
+    // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
 
 async function deploy(runner){
     unzipBuild(runner.current_build, runner.current_folder);
     setupVenv(runner.venv_folder);
+}
+
+async function postDeploy(runner){
     installDependencies(runner.venv_folder, runner.current_folder);
 }
 
-module.exports = deploy;
+module.exports = {
+    deploy, postDeploy
+};

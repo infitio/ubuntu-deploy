@@ -26,6 +26,11 @@ parser.addArgument([ '-t', '--token' ], {
     help: 'Gitlab private token for authorization'
 });
 
+parser.addArgument([ '-s', '--stage' ], {
+    defaultValue: 1,
+    help: 'build stage: 1,2,3'
+});
+
 let args = parser.parseArgs();
 
 module.exports = args;
