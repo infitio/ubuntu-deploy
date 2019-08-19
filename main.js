@@ -13,7 +13,7 @@ async function stage1(runner){
     await build(runner);
     console.log("deploy...");
     await deploy(runner);
-    console.log(`Stage 1 complete: Now run \n source ${runner.venv_folder}/bin/activate && sh run.sh ${args.project_code} ${args.token} 2`);
+    console.log(`Stage 1 complete: Now run \n source ${runner.venv_folder}/bin/activate && sudo node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2`);
 }
 
 async function stage3(runner){
@@ -30,9 +30,6 @@ async function run(){
     };
     let isRoot = os.userInfo().uid===0;
     console.log("os.userInfo()", os.userInfo());
-    if(args.stage==="1"){
-        isRoot && await stage1(runner);
-    }
     switch (args.stage) {
         case "1": return /*isRoot && */await stage1(runner);
         // case "2": return /*isRoot && */await stage2(runner);
