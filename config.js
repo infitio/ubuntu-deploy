@@ -1,9 +1,8 @@
 const args = require('./args');
-const config = require('./config');
+const projects = require('./projects');
 const Handlebars = require('handlebars');
 
-
-let project_config = config[args.project_code];
+let project_config = projects[args.project_code];
 let deployment_config = project_config.deployments[args.deployment || "default"];
 let project_id = encodeURIComponent(project_config.vcs_identifier);
 let project_name = project_config.name;

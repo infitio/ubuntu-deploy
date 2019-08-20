@@ -1,5 +1,4 @@
 {
-  "base_folder": "/opt/python/",
   "hg": {
     "name": "hello-gromor",
     "wsgi_relative_path": "hellogromor/wsgi.py",
