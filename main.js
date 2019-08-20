@@ -28,7 +28,7 @@ async function stage2(runner){
     await postDeploy(runner);
     console.log(`Stage 2 complete: now run the following comamnd:
 ${breaker}
-${process.argv[0]} ${process.argv[1]} -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 3
+sudo ${process.argv[0]} ${process.argv[1]} -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 3
 ${breaker}
 `);
 
