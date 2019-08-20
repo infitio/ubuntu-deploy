@@ -41,6 +41,8 @@ async function stage3(runner){
 
 async function run(){
     let runner = {
+        project_config: config.project_config,
+        deployment_config: config.deployment_config,
         project_id: config.project_id,
         project_name: config.project_name,
         qualified_project_name: config.qualified_project_name,
@@ -50,6 +52,7 @@ async function run(){
         run_folder: config.project_folder+'/run',
         venv_folder: config.project_folder+'/run/venv',
         logs_folder: config.project_folder+'/logs',
+        wsgi_path: config.project_folder+'/current/'+config.project_config.wsgi_relative_path,
         run_as: "support"   //or os.userInfo().username
     };
     // let isRoot = os.userInfo().uid===0;

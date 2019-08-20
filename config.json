@@ -1,0 +1,20 @@
+{
+  "base_folder": "/opt/python/",
+  "hg": {
+    "name": "hello-gromor",
+    "wsgi_relative_path": "hellogromor/wsgi.py",
+    "vcs_identifier": "outsource-coromandel/hello-gromor",
+    "app_file": "bin/hellogromor_v{{version}}.zip",
+    "deployments": {
+      "default": {
+        "port": 8001
+      },
+      "dev": {
+        "port": 8002
+      },
+      "uat": {
+        "port": 8003
+      }
+    }
+  }
+}

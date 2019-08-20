@@ -1,27 +1,15 @@
 const args = require('./args');
+const config = require('./config');
+const Handlebars = require('handlebars');
 
 
-let project_id = encodeURIComponent({
-    'hg': 'outsource-coromandel/hello-gromor',
-    'gs': 'outsource-coromandel/gromor-store',
-    'is': 'outsource-coromandel/ideaspace',
-    'ws': 'outsource-coromandel/web-service',
-}[args.project_code]);
-
-let project_name = {
-    'hg': 'hello-gromor',
-    'gs': 'gromor-store',
-    'is': 'ideaspace',
-    'ws': 'web-service',
-}[args.project_code];
+let project_config = config[args.project_code];
+let deployment_config = project_config.deployments[args.deployment || "default"];
+let project_id = encodeURIComponent(project_config.vcs_identifier);
+let project_name = project_config.name;
 
 function getAppFile(version){
-    return {
-        'hg': `bin/hellogromor_v${version}.zip`,
-        'gs': `bin/shakti_v${version}.zip`,
-        // 'is': `bin/hellogromor_v${version}.zip`,
-        // 'ws': `bin/webservice_v${version}.zip`,
-    }[args.project_code];
+    return Handlebars.compile(project_config.app_file)({version});
 }
 
 let base_folder = '/opt/python/';
@@ -29,6 +17,8 @@ let qualified_project_name = args.deployment?`${project_name}-${args.deployment}
 let project_folder = `${base_folder}${qualified_project_name}`;
 
 module.exports = {
+    project_config,
+    deployment_config,
     project_id,
     project_name,
     qualified_project_name,

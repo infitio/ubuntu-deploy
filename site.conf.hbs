@@ -4,6 +4,7 @@ Listen 8001
     CustomLog {{runner.logs_folder}}/accesslog common
     ErrorLog {{runner.logs_folder}}/errorlog
     WSGIDaemonProcess {{runner.qualified_project_name}} python-path={{runner.current_folder}} python-home={{runner.venv_folder}} home={{runner.current_folder}} user={{runner.run_as}}
+    WSGIScriptAlias / {{runner.wsgi_path}} process-group={{runner.qualified_project_name}} application-group=%{GLOBAL}
     <Directory {{runner.current_folder}}>
     <Files wsgi.py>
         Require all granted
