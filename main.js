@@ -6,7 +6,7 @@ const os = require('os');
 const config = require('./config');
 const args = require('./args');
 
-
+let breaker = '--------------------------------------------------------------------------------------------';
 async function stage1(runner){
     console.log("setup...");
     setup(runner);
@@ -15,8 +15,9 @@ async function stage1(runner){
     console.log("deploy...");
     await deploy(runner);
     console.log(`Stage 1 complete: Now run the following commands: 
-    
+${breaker}
 source ${runner.venv_folder}/bin/activate && ${process.argv[0]} ${process.argv[1]} -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
+${breaker}
     `);
     // pip install -r ${runner.current_folder}/requirements.txt
     //sudo node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
@@ -26,8 +27,9 @@ async function stage2(runner){
     console.log("post deploy...");
     await postDeploy(runner);
     console.log(`Stage 2 complete: now run the following comamnd:
-    
+${breaker}
 ${process.argv[0]} ${process.argv[1]} -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 3
+${breaker}
 `);
 
 }
