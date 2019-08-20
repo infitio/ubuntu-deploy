@@ -20,15 +20,15 @@ function setupVenv(venv_folder){
     console.log("venv setup complete...");
 }
 
-function installDependencies(venv_folder, current_folder){
+function installDependencies(runner){
     sEx(`which python`);
     sEx(`python --version`);
-    // let sourceIt = `source ${venv_folder}/bin/activate`;
-    let cdToCurrent = `cd ${current_folder}`;
+    // let sourceIt = `source ${runner.venv_folder}/bin/activate`;
+    // let cdToCurrent = `cd ${runner.current_folder}`;
     sEx(`sudo chown -R ${os.userInfo().username} ${config.base_folder}`);
     sEx(`pip install -q wheel`);
-    sEx(`pip install -q -r ${current_folder}/requirements.txt`);
-    sEx(`${cdToCurrent} && touch .env`);
+    sEx(`pip install -q -r ${runner.current_folder}/requirements.txt`);
+    sEx(`touch ${runner.current_env_file}`);
     console.log("requirements installed...");
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
@@ -39,7 +39,7 @@ async function deploy(runner){
 }
 
 async function postDeploy(runner){
-    installDependencies(runner.venv_folder, runner.current_folder);
+    installDependencies(runner);
 }
 
 module.exports = {

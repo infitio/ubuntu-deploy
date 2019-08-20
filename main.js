@@ -30,6 +30,7 @@ async function run(){
     let runner = {
         builds_folder: config.project_folder+'/bundle',
         current_folder: config.project_folder+'/current',
+        current_env_file: config.project_folder+'/current/.env',
         run_folder: config.project_folder+'/run',
         venv_folder: config.project_folder+'/run/venv'
     };
