@@ -1,11 +1,8 @@
 const fetch = require('node-fetch');
 const args = require('./args');
-const fs = require('fs');
 const config = require('./config');
 const moment = require('moment');
-const {passTime} = require('./utils');
-const https = require('https');
-const shell = require('shelljs');
+const {passTime, sEx} = require('./utils');
 
 
 let host_api = "https://gitlab.com/api/v4";
@@ -15,7 +12,7 @@ async function callAPI(url){
 }
 
 function downloadFile(url, destination){
-    shell.exec(`curl --location --header "PRIVATE-TOKEN: ${args.token}" "${host_api+url}" >> ${destination}`);
+    sEx(`curl --location --header "PRIVATE-TOKEN: ${args.token}" "${host_api+url}" >> ${destination}`);
 }
 
 

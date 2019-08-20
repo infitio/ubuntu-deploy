@@ -1,14 +1,7 @@
-const shell = require('shelljs');
 const os = require('os');
 const config = require('./config');
+const {sEx} = require('./utils');
 
-
-function sEx(cmd){
-    let r = shell.exec(cmd);
-    if(r.code!==0) {
-        throw new Error(`${cmd} | FAILED`);
-    }
-}
 
 function unzipBuild(file, out_folder){
     sEx(`unzip -o -q ${file} -d ${out_folder}`);

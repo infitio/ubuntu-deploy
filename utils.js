@@ -1,3 +1,6 @@
+const shell = require('shelljs');
+
+
 function passTime(secs){
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
@@ -6,6 +9,14 @@ function passTime(secs){
     });
 }
 
+function sEx(cmd){
+    let r = shell.exec(cmd);
+    if(r.code!==0) {
+        throw new Error(`${cmd} | FAILED`);
+    }
+}
+
 module.exports = {
-    passTime
+    passTime,
+    sEx
 };
