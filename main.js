@@ -15,14 +15,13 @@ async function stage1(runner){
     await deploy(runner);
     console.log(`Stage 1 complete: Now run the following commands: 
     
-    sudo chown -R ${os.userInfo().username} ${config.base_folder}
-    source ${runner.venv_folder}/bin/activate
-    pip install -r ${runner.current_folder}/requirements.txt
+    source ${runner.venv_folder}/bin/activate && node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
     `);
+    // pip install -r ${runner.current_folder}/requirements.txt
     //sudo node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
 }
 
-async function stage3(runner){
+async function stage2(runner){
     console.log("post deploy...");
     await postDeploy(runner);
 }
@@ -37,8 +36,7 @@ async function run(){
     let isRoot = os.userInfo().uid===0;
     switch (args.stage) {
         case "1": return /*isRoot && */await stage1(runner);
-        // case "2": return /*isRoot && */await stage2(runner);
-        case "3": return /*isRoot && */await stage3(runner);
+        case "2": return /*isRoot && */await stage2(runner);
         default: console.log("No match");
     }
 }

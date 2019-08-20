@@ -1,4 +1,7 @@
 const shell = require('shelljs');
+const os = require('os');
+const config = require('./config');
+
 
 function sEx(cmd){
     let r = shell.exec(cmd);
@@ -20,6 +23,8 @@ function installDependencies(venv_folder, current_folder){
     sEx(`python --version`);
     // let sourceIt = `source ${venv_folder}/bin/activate`;
     let cdToCurrent = `cd ${current_folder}`;
+    sEx(`sudo chown -R ${os.userInfo().username} ${config.base_folder}`);
+    sEx(`pip install wheel`);
     sEx(`pip install -r ${current_folder}/requirements.txt`);
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
