@@ -63,6 +63,7 @@ async function run(){
 
 process.on('beforeExit', async ()=> {
     try{
+        // process.chdir(__dirname);
         await run();
     }catch (e) {
         console.error("ERR, exiting:", e);
