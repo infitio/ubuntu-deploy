@@ -26,8 +26,8 @@ function installDependencies(venv_folder, current_folder){
     // let sourceIt = `source ${venv_folder}/bin/activate`;
     // let cdToCurrent = `cd ${current_folder}`;
     sEx(`sudo chown -R ${os.userInfo().username} ${config.base_folder}`);
-    sEx(`pip install -q WARNING wheel`);
-    sEx(`pip install -q WARNING -r ${current_folder}/requirements.txt`);
+    sEx(`pip install -q wheel`);
+    sEx(`pip install -q -r ${current_folder}/requirements.txt`);
     console.log("requirements installed...");
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
