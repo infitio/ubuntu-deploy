@@ -1,5 +1,5 @@
-Listen 8001
-<VirtualHost *:8001>
+Listen {{runner.deployment_config.port}}
+<VirtualHost *:{{runner.deployment_config.port}}>
     #ServerName 172.26.74.174
     CustomLog {{runner.logs_folder}}/accesslog common
     ErrorLog {{runner.logs_folder}}/errorlog
