@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "argparse": "^1.0.10",
+    "handlebars": "^4.1.2",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "shelljs": "^0.8.3",

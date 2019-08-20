@@ -25,12 +25,13 @@ function getAppFile(version){
 }
 
 let base_folder = '/opt/python/';
-// let base_folder = '~/Z_TEMPX/';
-let project_folder = args.deployment?`${base_folder}${project_name}-${args.deployment}`:`${base_folder}${project_name}`;
+let qualified_project_name = args.deployment?`${project_name}-${args.deployment}`:project_name;
+let project_folder = `${base_folder}${qualified_project_name}`;
 
 module.exports = {
     project_id,
     project_name,
+    qualified_project_name,
     getAppFile,
     base_folder,
     project_folder
