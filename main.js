@@ -15,7 +15,7 @@ async function stage1(runner){
     await deploy(runner);
     console.log(`Stage 1 complete: Now run the following commands: 
     
-    source ${runner.venv_folder}/bin/activate && node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
+    source ${runner.venv_folder}/bin/activate && ${process.argv[0]} ${process.argv[1]} -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
     `);
     // pip install -r ${runner.current_folder}/requirements.txt
     //sudo node main -p ${args.project_code} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2
