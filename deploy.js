@@ -24,10 +24,11 @@ function installDependencies(venv_folder, current_folder){
     sEx(`which python`);
     sEx(`python --version`);
     // let sourceIt = `source ${venv_folder}/bin/activate`;
-    // let cdToCurrent = `cd ${current_folder}`;
+    let cdToCurrent = `cd ${current_folder}`;
     sEx(`sudo chown -R ${os.userInfo().username} ${config.base_folder}`);
     sEx(`pip install -q wheel`);
     sEx(`pip install -q -r ${current_folder}/requirements.txt`);
+    sEx(`${cdToCurrent} && touch .env`);
     console.log("requirements installed...");
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
