@@ -11,7 +11,7 @@ function sEx(cmd){
 }
 
 function unzipBuild(file, out_folder){
-    sEx(`unzip -o ${file} -d ${out_folder}`);
+    sEx(`unzip -o ${file} -d ${out_folder} -q`);
 }
 
 function setupVenv(venv_folder){
@@ -24,8 +24,8 @@ function installDependencies(venv_folder, current_folder){
     // let sourceIt = `source ${venv_folder}/bin/activate`;
     let cdToCurrent = `cd ${current_folder}`;
     sEx(`sudo chown -R ${os.userInfo().username} ${config.base_folder}`);
-    sEx(`pip install wheel`);
-    sEx(`pip install -r ${current_folder}/requirements.txt`);
+    sEx(`pip install -q WARNING wheel`);
+    sEx(`pip install -q WARNING -r ${current_folder}/requirements.txt`);
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
 
