@@ -15,6 +15,7 @@ async function stage1(runner){
     await deploy(runner);
     console.log(`Stage 1 complete: Now run the following commands: 
     
+    sudo chown -R ${os.userInfo().username} ${config.base_folder}
     source ${runner.venv_folder}/bin/activate
     pip install -r ${runner.current_folder}/requirements.txt
     `);

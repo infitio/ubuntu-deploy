@@ -32,5 +32,6 @@ module.exports = {
     project_id,
     project_name,
     getAppFile,
+    base_folder,
     project_folder
 };
