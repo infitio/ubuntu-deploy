@@ -33,11 +33,11 @@ async function run(){
         run_folder: config.project_folder+'/run',
         venv_folder: config.project_folder+'/run/venv'
     };
-    let isRoot = os.userInfo().uid===0;
+    // let isRoot = os.userInfo().uid===0;
     switch (args.stage) {
         case "1": return /*isRoot && */await stage1(runner);
         case "2": return /*isRoot && */await stage2(runner);
-        default: console.log("No match");
+        default: await stage1(runner);
     }
 }
 
