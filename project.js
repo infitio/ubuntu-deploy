@@ -35,11 +35,14 @@ class Build{
         return `${this.project.buildsFolder}/${this.buildName}-v${this.project.version}-${now.format('YYYY-MM-DD_HH-mm-ss')}.zip`
     }
 
-    get deployPath(){ return this.project.currentFolder+'/'+this.buildName; }
+    get deployPath(){
+        if(this.isAdhara) return this.project.runner.static_base_folder+this.buildName;
+        return this.project.currentFolder+'/'+this.buildName;
+    }
     get qualifiedName(){ return this.project.qualifiedName+'-'+this.buildName; }
 
     //Django specific settings
-    get wsgiPath(){ return this.project.currentFolder+'/'+this.build_config.wsgi_relative_path; }   //todo prepend current folder!
+    get wsgiPath(){ return this.deployPath+'/'+this.build_config.wsgi_relative_path; }
     get venvFolder(){ return this.project.runFolder+'/'+this.buildName+'/venv' }
     get envFile(){ return this.deployPath+'/.env' }
 

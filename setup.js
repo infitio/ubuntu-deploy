@@ -9,6 +9,7 @@ function createBuildsDir(runner){
     shell.mkdir('-p', runner.project.currentFolder);
     shell.mkdir('-p', runner.project.runFolder);
     shell.mkdir('-p', runner.project.logsFolder);
+    shell.mkdir('-p', runner.static_base_folder);
 }
 
 module.exports = (runner) => {

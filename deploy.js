@@ -33,7 +33,11 @@ function installDependencies(runner){
  * */
 async function deploy(runner){
     for(let build of runner.project.builds){
-        unzipBuild(build.buildFilePath, build.deployPath);  //TODO delete folder on unzip success
+        if(build.isAdhara){
+            unzipBuild(build.buildFilePath, build.deployPath);  //TODO delete folder on unzip success
+        }else{
+            unzipBuild(build.buildFilePath, build.deployPath);  //TODO delete folder on unzip success
+        }
         if(build.isDjango){
             setupVenv(build.venvFolder);
         }
