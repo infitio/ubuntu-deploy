@@ -13,7 +13,7 @@ function configureApacheSite(build, runner){
     let available_site = `/etc/apache2/sites-available/${build.qualifiedName}.conf`;
     let enabled_site = `/etc/apache2/sites-enabled/${build.qualifiedName}.conf`;
     fs.writeFileSync(available_site, site_config);
-    sEx(`ln -s ${available_site} ${enabled_site}`);
+    sEx(`ln -fs ${available_site} ${enabled_site}`);
     sEx('service apache2 restart');
 }
 
@@ -28,7 +28,7 @@ function configureNginxSite(build, runner){
     let available_site = `/etc/nginx/sites-available/${build.qualifiedName}.conf`;
     let enabled_site = `/etc/nginx/sites-enabled/${build.qualifiedName}.conf`;
     fs.writeFileSync(available_site, site_config);
-    sEx(`ln -s ${available_site} ${enabled_site}`);
+    sEx(`ln -fs ${available_site} ${enabled_site}`);
     sEx('service nginx restart');
 }
 
