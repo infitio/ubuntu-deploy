@@ -21,6 +21,7 @@ function installDependencies(runner){
     // let sourceIt = `source ${runner.venv_folder}/bin/activate`;
     let cdToDeploymentRoot = `cd ${build.deployPath}`;
     sEx(`sudo chown -R ${runner.runAs} ${runner.base_folder}`);
+    sEx(`sudo chown -R ${runner.runAs} ${runner.static_base_folder}`);
     sEx(`pip install -q wheel`);
     sEx(`pip install -q -r ${build.deployPath}/requirements.txt`);
     sEx(`touch ${build.envFile}`);
