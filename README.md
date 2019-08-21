@@ -1,1 +1,1 @@
-use private token: **y64oVgzjhoteQ_hX8HsQ** (valid until end of September, 2019)
+Ngnix ref: https://medium.com/@jgefroh/a-guide-to-using-nginx-for-static-websites-d96a9d034940

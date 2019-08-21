@@ -1,0 +1,39 @@
+{
+  "name": "hello-gromor",
+  "vcs_identifier": "outsource-coromandel/hello-gromor",
+  "builds": [
+    {
+      "type": "django",
+      "name": "server",
+      "wsgi_relative_path": "hellogromor/wsgi.py",
+      "app_file": "bin/hellogromor_v{{version}}.zip",
+      "deployments": {
+        "default": {
+          "port": 8001
+        },
+        "dev": {
+          "port": 8002
+        },
+        "uat": {
+          "port": 8003
+        }
+      }
+    },
+    {
+      "type": "adhara",
+      "name": "web",
+      "app_file": "bin/hellogromor-web_v{{version}}.zip",
+      "deployments": {
+        "default": {
+          "port": 2001
+        },
+        "dev": {
+          "port": 2002
+        },
+        "uat": {
+          "port": 2003
+        }
+      }
+    }
+  ]
+}

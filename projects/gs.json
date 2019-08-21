@@ -1,0 +1,23 @@
+{
+  "name": "gromor-store",
+  "vcs_identifier": "outsource-coromandel/hello-gromor",
+  "builds": [
+    {
+      "type": "django",
+      "name": "gromor-store",
+      "wsgi_relative_path": "shakti/wsgi.py",
+      "app_file": "bin/shakti_v{{version}}.zip",
+      "deployments": {
+        "default": {
+          "port": 8004
+        },
+        "dev": {
+          "port": 8005
+        },
+        "uat": {
+          "port": 8006
+        }
+      }
+    }
+  ]
+}

@@ -1,5 +1,3 @@
-const os = require('os');
-const config = require('./config');
 const {sEx} = require('./utils');
 
 
@@ -13,24 +11,38 @@ function setupVenv(venv_folder){
     console.log("venv setup complete...");
 }
 
+/**
+ * @param {Runner} runner
+ * */
 function installDependencies(runner){
+    let build = runner.project.getBuild(runner.runner_config.args.build);
     sEx(`which python`);
     sEx(`python --version`);
     // let sourceIt = `source ${runner.venv_folder}/bin/activate`;
     // let cdToCurrent = `cd ${runner.current_folder}`;
-    sEx(`sudo chown -R ${os.userInfo().username} ${config.base_folder}`);
+    sEx(`sudo chown -R ${runner.runAs} ${runner.base_folder}`);
     sEx(`pip install -q wheel`);
-    sEx(`pip install -q -r ${runner.current_folder}/requirements.txt`);
-    sEx(`touch ${runner.current_env_file}`);
+    sEx(`pip install -q -r ${build.deployPath}/requirements.txt`);
+    sEx(`touch ${build.envFile}`);
     console.log("requirements installed...");
     // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
 }
 
+/**
+ * @param {Runner} runner
+ * */
 async function deploy(runner){
-    unzipBuild(runner.current_build, runner.current_folder);
-    setupVenv(runner.venv_folder);
+    for(let build of runner.project.builds){
+        unzipBuild(build.buildFilePath, build.deployPath);  //TODO delete folder on unzip success
+        if(build.isDjango){
+            setupVenv(build.venvFolder);
+        }
+    }
 }
 
+/**
+ * @param {Runner} runner
+ * */
 async function postDeploy(runner){
     installDependencies(runner);
 }
