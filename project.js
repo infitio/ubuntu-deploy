@@ -36,7 +36,7 @@ class Build{
     }
 
     get deployPath(){
-        if(this.isAdhara) return this.project.runner.static_base_folder+this.buildName;
+        if(this.isAdhara) return this.project.runner.static_base_folder+this.project.qualifiedName+'/'+this.buildName;
         return this.project.currentFolder+'/'+this.buildName;
     }
     get qualifiedName(){ return this.project.qualifiedName+'-'+this.buildName; }
