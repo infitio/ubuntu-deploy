@@ -1,10 +1,10 @@
 {
-  "name": "gromor-store",
-  "vcs_identifier": "outsource-coromandel/hello-gromor",
+  "name": "gromorshakti",
+  "vcs_identifier": "outsource-coromandel/gromor-store",
   "builds": [
     {
       "type": "django",
-      "name": "gromor-store",
+      "name": "server",
       "wsgi_relative_path": "shakti/wsgi.py",
       "app_file": "bin/shakti_v{{version}}.zip",
       "deployments": {
