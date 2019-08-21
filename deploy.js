@@ -19,13 +19,13 @@ function installDependencies(runner){
     sEx(`which python`);
     sEx(`python --version`);
     // let sourceIt = `source ${runner.venv_folder}/bin/activate`;
-    // let cdToCurrent = `cd ${runner.current_folder}`;
+    let cdToDeploymentRoot = `cd ${build.deployPath}`;
     sEx(`sudo chown -R ${runner.runAs} ${runner.base_folder}`);
     sEx(`pip install -q wheel`);
     sEx(`pip install -q -r ${build.deployPath}/requirements.txt`);
     sEx(`touch ${build.envFile}`);
     console.log("requirements installed...");
-    // sEx(`${sourceIt} && ${cdToCurrent} && python manage.py collectstatic --noinput`);
+    sEx(`${cdToDeploymentRoot} && python manage.py collectstatic --noinput`);
 }
 
 /**
