@@ -12,6 +12,7 @@ parser.addArgument([ '-p', '--project_code' ], {
 
 parser.addArgument([ '-d', '--deployment' ], {
     required: false,
+    defaultValue: 'default',
     help: 'deployment: uat, dev. If not provided, will default to empty i.e. production'
 });
 
