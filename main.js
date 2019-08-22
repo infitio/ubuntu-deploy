@@ -1,7 +1,7 @@
 const setup = require('./setup');
 const build = require('./build');
 const {deploy, postDeploy} = require('./deploy');
-const configureSites = require('./configure-site');
+const setupServers = require('./setup-server');
 const args = require('./args');
 const Runner = require('./runner');
 
@@ -34,18 +34,21 @@ ${breaker}
 }
 
 async function stage3(runner){
-    console.log("configuring sites...");
-    await configureSites(runner);
+    console.log("setting up servers...");
+    await setupServers(runner);
 }
 
 async function run(){
     let runner = new Runner({args});
-    switch (args.stage) {
+    await stage1(runner);
+    await stage3(runner);
+    console.log(`${runner.project.qualifiedName} | Deployment complete...`);
+    /*switch (args.stage) {
         case "1": return await stage1(runner);
         case "2": return await stage2(runner);
         case "3": return await stage3(runner);
         default: await stage1(runner);
-    }
+    }*/
 }
 
 process.on('beforeExit', async ()=> {

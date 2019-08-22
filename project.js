@@ -43,8 +43,10 @@ class Build{
 
     //Django specific settings
     get wsgiPath(){ return this.deployPath+'/'+this.build_config.wsgi_relative_path; }
-    get venvFolder(){ return this.project.runFolder+'/'+this.buildName+'/venv' }
-    get envFile(){ return this.deployPath+'/.env' }
+    get venvFolder(){ return this.project.runFolder+'/'+this.buildName+'/venv'; }
+    get pythonExecutable(){ return this.venvFolder+'/bin/python3'; }
+    get managementFile(){ return this.deployPath+'/manage.py'; }
+    get envFile(){ return this.deployPath+'/.env'; }
 
     //Adhara specific settings
     //...

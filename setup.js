@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const {sEx} = require('./utils');
 
 
 /**
@@ -12,6 +13,15 @@ function createBuildsDir(runner){
     shell.mkdir('-p', runner.static_base_folder);
 }
 
+/**
+ * @param {Runner} runner
+ * */
+function chownDirs(runner){
+    sEx(`sudo chown -R ${runner.runAs} ${runner.base_folder}`);
+    sEx(`sudo chown -R ${runner.runAs} ${runner.static_base_folder}`);
+}
+
 module.exports = (runner) => {
     createBuildsDir(runner);
+    chownDirs(runner);
 };

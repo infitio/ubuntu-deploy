@@ -3,7 +3,6 @@ const {sEx} = require('./utils');
 
 function unzipBuild(file, out_folder){
     sEx(`unzip -o -q ${file} -d ${out_folder}`);
-    console.log("unzip complete...");
 }
 
 function setupVenv(venv_folder){
@@ -12,21 +11,15 @@ function setupVenv(venv_folder){
 }
 
 /**
- * @param {Runner} runner
+ * @param {Build} build
  * */
-function installDependencies(runner){
-    let build = runner.project.getBuild(runner.runner_config.args.build);
-    sEx(`which python`);
-    sEx(`python --version`);
-    // let sourceIt = `source ${runner.venv_folder}/bin/activate`;
-    let cdToDeploymentRoot = `cd ${build.deployPath}`;
-    sEx(`sudo chown -R ${runner.runAs} ${runner.base_folder}`);
-    sEx(`sudo chown -R ${runner.runAs} ${runner.static_base_folder}`);
-    sEx(`pip install -q wheel`);
-    sEx(`pip install -q -r ${build.deployPath}/requirements.txt`);
+function installDependencies(build){
+    let pip = `${build.pythonExecutable} -m pip`;
+    sEx(`${pip} install -q wheel`);
+    sEx(`${pip} install -q -r ${build.deployPath}/requirements.txt`);
     sEx(`touch ${build.envFile}`);
     console.log("requirements installed...");
-    sEx(`${cdToDeploymentRoot} && python manage.py collectstatic --noinput`);
+    sEx(`${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
 }
 
 /**
@@ -34,13 +27,14 @@ function installDependencies(runner){
  * */
 async function deploy(runner){
     for(let build of runner.project.builds){
-        if(build.isAdhara){
-            unzipBuild(build.buildFilePath, build.deployPath);  //TODO delete folder on unzip success
-        }else{
-            unzipBuild(build.buildFilePath, build.deployPath);  //TODO delete folder on unzip success
-        }
+        unzipBuild(build.buildFilePath, build.deployPath);
+        fs.unlinkSync(build.buildFilePath);
+        console.log(`${build.project.qualifiedName} | build moved to deployment folder and build dir cleaned`);
         if(build.isDjango){
             setupVenv(build.venvFolder);
+            console.log(`${build.project.qualifiedName} | virtual environment created. Installing dependencies...`);
+            installDependencies(build);
+            console.log(`${build.project.qualifiedName} | Dependencies installed`);
         }
     }
 }
@@ -49,7 +43,8 @@ async function deploy(runner){
  * @param {Runner} runner
  * */
 async function postDeploy(runner){
-    installDependencies(runner);
+    let build = runner.project.getBuild(runner.runner_config.args.build);
+    installDependencies(build);
 }
 
 module.exports = {
