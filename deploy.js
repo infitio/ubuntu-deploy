@@ -3,13 +3,11 @@ const fs = require('fs');
 
 
 function unzipBuild(file, out_folder){
-    console.log("file!", file);
     sEx(`unzip -o -q ${file} -d ${out_folder}`);
 }
 
 function setupVenv(venv_folder){
     sEx(`python3 -m venv ${venv_folder}`);
-    console.log("venv setup complete...");
 }
 
 /**

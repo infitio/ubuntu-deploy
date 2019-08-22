@@ -37,7 +37,7 @@ function createCronJobs(build){
     if(build.isDjango){
         if(build.tasks.cron){
             fs.writeFileSync(
-                `/etc/cron.d/${build.qualifiedName}/`,
+                `/etc/cron.d/${build.qualifiedName}`,
                 `${build.tasks.cron.frequency} ${build.pythonExecutable} ${build.deployPath}/manage.py ${build.tasks.cron.management_command} >> ${build.project.logsFolder}/cronjobs.log`
             )
         }
