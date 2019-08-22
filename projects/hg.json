@@ -15,7 +15,9 @@
         "default_env": {
           "ENVIRONMENT": "production",
           "DB_DSN": "hellogromor-production",
-          "DB_NAME": "hellogromor"
+          "DB_NAME": "hellogromor",
+          "STATIC_HOST": "http://172.26.74.174:2001",
+          "MEDIA_HOST": "http://172.26.74.174:1999"
         }
       },
       "deployments": {
