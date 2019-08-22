@@ -20,7 +20,7 @@ function installDependencies(build){
     sEx(`${pip} install -q -r ${build.deployPath}/requirements.txt`);
     sEx(`touch ${build.envFile}`);
     console.log("requirements installed...");
-    sEx(`${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
+    sEx(`cd ${build.deployPath} && ${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
 }
 
 /**
