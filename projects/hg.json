@@ -7,6 +7,16 @@
       "name": "server",
       "wsgi_relative_path": "hellogromor/wsgi.py",
       "app_file": "bin/hellogromor_v{{version}}.zip",
+      "tasks": {
+        "cron": {
+          "frequency": "*/5 * * * *",
+          "management_command": "runcrons"
+        },
+        "default_env": {
+          "ENVIRONMENT": "production",
+          "DB_DSN": "hellogromor-production"
+        }
+      },
       "deployments": {
         "default": {
           "port": 8001

@@ -14,17 +14,25 @@ function setupVenv(venv_folder){
 /**
  * @param {Build} build
  * */
+function writeEnvFile(build){
+    if(fs.existsSync(build.envFile)) return;
+    let contents = [];
+    if(build.tasks.default_env){
+        for(let [k, v] of Object.entries(build.tasks.default_env)){
+            contents.push(k+'='+v);
+        }
+    }
+    fs.writeFileSync(build.envFile, contents.join('\n'));
+}
+
+/**
+ * @param {Build} build
+ * */
 function installDependencies(build){
     let pip = `${build.pythonExecutable} -m pip`;
     sEx(`${pip} install -q wheel`);
     sEx(`${pip} install -q -r ${build.deployPath}/requirements.txt`);
-    sEx(`touch ${build.envFile}`);
-    if(!fs.existsSync(build.envFile)){
-        fs.writeFileSync(build.envFile, `
-ENVIRONMENT=production
-DB_DSN=devdsn
-        `);
-    }
+    writeEnvFile(build);
     console.log("requirements installed...");
     sEx(`cd ${build.deployPath} && ENVIRONMENT=deploy && ${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
 }

@@ -35,11 +35,10 @@ function configureNginxSite(build, runner){
  * */
 function createCronJobs(build){
     if(build.isDjango){
-        let deployment_config = require(`${build.deployPath}/deployment.json`);
-        if(deployment_config.cron){
+        if(build.tasks.cron){
             fs.writeFileSync(
                 `/etc/cron.d/${build.qualifiedName}/`,
-                `${deployment_config.cron.frequency} ${build.pythonExecutable} ${build.deployPath}/manage.py ${deployment_config.cron.management_command} >> ${build.project.logsFolder}/cronjobs.log`
+                `${build.tasks.cron.frequency} ${build.pythonExecutable} ${build.deployPath}/manage.py ${build.tasks.cron.management_command} >> ${build.project.logsFolder}/cronjobs.log`
             )
         }
     }

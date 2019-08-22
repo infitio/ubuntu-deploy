@@ -40,6 +40,7 @@ class Build{
         return this.project.currentFolder+'/'+this.buildName;
     }
     get qualifiedName(){ return this.project.qualifiedName+'-'+this.buildName; }
+    get tasks(){ return this.build_config.tasks };
 
     //Django specific settings
     get wsgiPath(){ return this.deployPath+'/'+this.build_config.wsgi_relative_path; }
