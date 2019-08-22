@@ -19,8 +19,14 @@ function installDependencies(build){
     sEx(`${pip} install -q wheel`);
     sEx(`${pip} install -q -r ${build.deployPath}/requirements.txt`);
     sEx(`touch ${build.envFile}`);
+    if(!fs.existsSync(build.envFile)){
+        fs.writeFileSync(build.envFile, `
+ENVIRONMENT=production
+DB_DSN=devdsn
+        `);
+    }
     console.log("requirements installed...");
-    sEx(`cd ${build.deployPath} && ${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
+    sEx(`cd ${build.deployPath} && ENVIRONMENT=deploy && ${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
 }
 
 /**
