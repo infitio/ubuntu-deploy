@@ -7,6 +7,19 @@
       "name": "server",
       "wsgi_relative_path": "shakti/wsgi.py",
       "app_file": "bin/shakti_v{{version}}.zip",
+      "tasks": {
+        "cron": {
+          "frequency": "*/5 * * * *",
+          "management_command": "runcrons"
+        },
+        "default_env": {
+          "ENVIRONMENT": "production",
+          "DB_DSN": "hellogromor-production",
+          "DB_NAME": "hellogromor",
+          "STATIC_HOST": "http://172.26.74.174:2001",
+          "MEDIA_HOST": "http://172.26.74.174:1999"
+        }
+      },
       "deployments": {
         "default": {
           "port": 8004
