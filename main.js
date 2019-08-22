@@ -1,6 +1,7 @@
 const setup = require('./setup');
 const build = require('./build');
 const {deploy, postDeploy} = require('./deploy');
+const cleanup = require('./cleanup');
 const setupServers = require('./setup-server');
 const args = require('./args');
 const Runner = require('./runner');
@@ -13,13 +14,13 @@ async function stage1(runner){
     await build(runner);
     console.log("deploy...");
     await deploy(runner);
-    let next = runner.project.builds.filter(_=>_.isDjango).map(build => `source ${build.venvFolder}/bin/activate && ${process.argv[0]} ${process.argv[1]} -p ${args.project_code} --build ${build.buildName} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2 && deactivate`).join('\n');
-
-    console.log(`Stage 1 complete: Now run the following commands: 
-${breaker}
-${next}
-${breaker}
-    `);
+//     let next = runner.project.builds.filter(_=>_.isDjango).map(build => `source ${build.venvFolder}/bin/activate && ${process.argv[0]} ${process.argv[1]} -p ${args.project_code} --build ${build.buildName} ${args.deployment?('-d '+args.deployment):''} -t ${args.token} -s 2 && deactivate`).join('\n');
+//
+//     console.log(`Stage 1 complete: Now run the following commands:
+// ${breaker}
+// ${next}
+// ${breaker}
+//     `);
 }
 
 async function stage2(runner){
@@ -42,6 +43,7 @@ async function run(){
     let runner = new Runner({args});
     await stage1(runner);
     await stage3(runner);
+    cleanup(runner);
     console.log(`${runner.project.qualifiedName} | Deployment complete...`);
     /*switch (args.stage) {
         case "1": return await stage1(runner);

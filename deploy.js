@@ -34,7 +34,7 @@ function installDependencies(build){
     sEx(`${pip} install -q -r ${build.deployPath}/requirements.txt`);
     writeEnvFile(build);
     console.log("requirements installed...");
-    sEx(`cd ${build.deployPath} && ENVIRONMENT=deploy && ${build.pythonExecutable} ${build.managementFile} collectstatic --noinput`);
+    sEx(`cd ${build.deployPath} && ENVIRONMENT=deploy && ${build.pythonExecutable} ${build.managementFile} collectstatic --noinput -v 0`);
 }
 
 /**
@@ -43,13 +43,12 @@ function installDependencies(build){
 async function deploy(runner){
     for(let build of runner.project.builds){
         unzipBuild(build.buildFilePath, build.deployPath);
-        fs.unlinkSync(build.buildFilePath);
-        console.log(`${build.project.qualifiedName} | build moved to deployment folder and build dir cleaned`);
+        console.log(`${build.project.qualifiedName}:${build.qualifiedName} | build moved to deployment folder and build dir cleaned`);
         if(build.isDjango){
             setupVenv(build.venvFolder);
-            console.log(`${build.project.qualifiedName} | virtual environment created. Installing dependencies...`);
+            console.log(`${build.project.qualifiedName}:${build.qualifiedName} | virtual environment created. Installing dependencies...`);
             installDependencies(build);
-            console.log(`${build.project.qualifiedName} | Dependencies installed`);
+            console.log(`${build.project.qualifiedName}:${build.qualifiedName} | Dependencies installed`);
         }
     }
 }
