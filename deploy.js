@@ -3,6 +3,7 @@ const fs = require('fs');
 
 
 function unzipBuild(file, out_folder){
+    console.log("file!", file);
     sEx(`unzip -o -q ${file} -d ${out_folder}`);
 }
 
