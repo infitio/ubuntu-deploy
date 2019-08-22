@@ -14,7 +14,8 @@
         },
         "default_env": {
           "ENVIRONMENT": "production",
-          "DB_DSN": "hellogromor-production"
+          "DB_DSN": "hellogromor-production",
+          "DB_NAME": "hellogromor"
         }
       },
       "deployments": {
