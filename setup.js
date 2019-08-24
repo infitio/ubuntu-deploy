@@ -19,6 +19,7 @@ function createBuildsDir(runner){
 function chownDirs(runner){
     sEx(`sudo chown -R ${runner.runAs} ${runner.base_folder}`);
     sEx(`sudo chown -R ${runner.runAs} ${runner.static_base_folder}`);
+    sEx(`sudo chown -R ${runner.runAs} ${runner.media_base_folder}`);
 }
 
 module.exports = (runner) => {
