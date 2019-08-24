@@ -22,13 +22,16 @@
       },
       "deployments": {
         "default": {
-          "port": 80
+          "port": 80,
+          "serverName": "http://hellogromor.coromandel.biz"
         },
         "dev": {
-          "port": 80
+          "port": 80,
+          "serverName": "http://dev.hellogromor.coromandel.biz"
         },
         "uat": {
-          "port": 80
+          "port": 80,
+          "serverName": "http://uat.hellogromor.coromandel.biz"
         }
       }
     },
