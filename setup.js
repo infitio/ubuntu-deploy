@@ -11,6 +11,7 @@ function createBuildsDir(runner){
     shell.mkdir('-p', runner.project.runFolder);
     shell.mkdir('-p', runner.project.logsFolder);
     shell.mkdir('-p', runner.static_base_folder);
+    shell.mkdir('-p', runner.media_base_folder);
 }
 
 /**
