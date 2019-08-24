@@ -17,8 +17,8 @@ function writeEnvFile(build){
     if(fs.existsSync(build.envFile)) return;
     let contents = [];
     if(build.env){
-        Object.assign(build.env, build.deployment.env);
-        for(let [k, v] of Object.entries(build.tasks.env)){
+        let env = Object.assign({}, build.env, build.deployment.env);
+        for(let [k, v] of Object.entries(env)){
             contents.push(k+'='+v);
         }
     }
