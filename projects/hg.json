@@ -11,27 +11,37 @@
         "cron": {
           "frequency": "*/5 * * * *",
           "management_command": "runcrons"
-        },
-        "default_env": {
-          "ENVIRONMENT": "production",
-          "DB_DSN": "hellogromor-production",
-          "DB_NAME": "hellogromor",
-          "STATIC_HOST": "http://statix-alpha.coromande.biz",
-          "MEDIA_HOST": "http://media-alpha.coromandel.biz"
         }
+      },
+      "env": {
+        "ENVIRONMENT": "production",
+        "STATIC_HOST": "http://statix-alpha.coromande.biz",
+        "MEDIA_HOST": "http://media-alpha.coromandel.biz"
       },
       "deployments": {
         "default": {
           "port": 80,
-          "server_name": "http://hellogromor.coromandel.biz"
+          "server_name": "http://hellogromor.coromandel.biz",
+          "env": {
+            "DB_DSN": "hellogromor-production",
+            "DB_NAME": "hellogromor"
+          }
         },
         "dev": {
           "port": 80,
-          "server_name": "http://dev.hellogromor.coromandel.biz"
+          "server_name": "http://dev.hellogromor.coromandel.biz",
+          "env": {
+            "DB_DSN": "hellogromor-dev",
+            "DB_NAME": "hellogromor"
+          }
         },
         "uat": {
           "port": 80,
-          "server_name": "http://uat.hellogromor.coromandel.biz"
+          "server_name": "http://uat.hellogromor.coromandel.biz",
+          "env": {
+            "DB_DSN": "hellogromor-uat",
+            "DB_NAME": "hellogromor"
+          }
         }
       }
     },

@@ -16,8 +16,9 @@ function setupVenv(venv_folder){
 function writeEnvFile(build){
     if(fs.existsSync(build.envFile)) return;
     let contents = [];
-    if(build.tasks.default_env){
-        for(let [k, v] of Object.entries(build.tasks.default_env)){
+    if(build.env){
+        Object.assign(build.env, build.deployment.env);
+        for(let [k, v] of Object.entries(build.tasks.env)){
             contents.push(k+'='+v);
         }
     }

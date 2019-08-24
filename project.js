@@ -10,6 +10,7 @@ class Deployment{
 
     get port(){ return this.deployment_config.port || 80; }
     get serverName(){ return this.deployment_config.server_name; }
+    get env(){ return this.deployment_config.env; }
 
     get is80Port(){ return this.port === 80; }
 
@@ -42,7 +43,8 @@ class Build{
         return this.project.currentFolder+'/'+this.buildName;
     }
     get qualifiedName(){ return this.project.qualifiedName+'-'+this.buildName; }
-    get tasks(){ return this.build_config.tasks };
+    get tasks(){ return this.build_config.tasks; }
+    get env(){ return this.build_config.env; }
 
     //Django specific settings
     get wsgiPath(){ return this.deployPath+'/'+this.build_config.wsgi_relative_path; }
