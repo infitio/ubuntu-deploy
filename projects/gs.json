@@ -16,19 +16,19 @@
           "ENVIRONMENT": "production",
           "DB_DSN": "hellogromor-production",
           "DB_NAME": "hellogromor",
-          "STATIC_HOST": "http://172.26.74.174:2001",
-          "MEDIA_HOST": "http://172.26.74.174:1999"
+          "STATIC_HOST": "http://statix-alpha.coromande.biz",
+          "MEDIA_HOST": "http://media-alpha.coromandel.biz"
         }
       },
       "deployments": {
         "default": {
-          "port": 8004
+          "port": 80
         },
         "dev": {
-          "port": 8005
+          "port": 80
         },
         "uat": {
-          "port": 8006
+          "port": 80
         }
       }
     }

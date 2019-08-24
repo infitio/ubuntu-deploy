@@ -1,6 +1,5 @@
-Listen {{build.deployment.port}}
-<VirtualHost *:{{build.deployment.port}}>
-    #ServerName {{build.deployment.serverName}}
+<VirtualHost 127.0.0.1:8080>
+    ServerName {{build.deployment.serverName}}
     CustomLog {{build.project.logsFolder}}/accesslog common
     ErrorLog {{build.project.logsFolder}}/errorlog
     WSGIDaemonProcess {{build.project.qualifiedName}} python-path={{build.deployPath}} python-home={{build.venvFolder}} home={{build.deployPath}} user={{runner.runAs}}

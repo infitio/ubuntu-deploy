@@ -8,8 +8,10 @@ class Deployment{
         this.build = build;
     }
 
-    get port(){ return this.deployment_config.port; }
+    get port(){ return this.deployment_config.port || 80; }
     get serverName(){ return this.deployment_config.server_name; }
+
+    get is80Port(){ return this.port === 80; }
 
 }
 

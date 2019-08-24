@@ -16,37 +16,26 @@
           "ENVIRONMENT": "production",
           "DB_DSN": "hellogromor-production",
           "DB_NAME": "hellogromor",
-          "STATIC_HOST": "http://172.26.74.174:2001",
-          "MEDIA_HOST": "http://172.26.74.174:1999"
+          "STATIC_HOST": "http://statix-alpha.coromande.biz",
+          "MEDIA_HOST": "http://media-alpha.coromandel.biz"
         }
       },
       "deployments": {
         "default": {
-          "port": 8001
+          "port": 80
         },
         "dev": {
-          "port": 8002
+          "port": 80
         },
         "uat": {
-          "port": 8003
+          "port": 80
         }
       }
     },
     {
       "type": "adhara",
       "name": "web",
-      "app_file": "bin/hellogromor-web_v{{version}}.zip",
-      "deployments": {
-        "default": {
-          "port": 2001
-        },
-        "dev": {
-          "port": 2002
-        },
-        "uat": {
-          "port": 2003
-        }
-      }
+      "app_file": "bin/hellogromor-web_v{{version}}.zip"
     }
   ]
 }

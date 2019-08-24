@@ -7,6 +7,20 @@ const {sEx} = require('./utils');
  * @param {Build} build
  * @param {Runner} runner
  * */
+function configureNginxLink(build, runner){
+    let site_config = Handlebars.compile(fs.readFileSync(__dirname+'/templates/nginx-link.conf.hbs').toString())({build, runner});
+    let available_site = `/etc/nginx/sites-available/${build.qualifiedName}`;
+    let enabled_site = `/etc/nginx/sites-enabled/${build.qualifiedName}`;
+    fs.writeFileSync(available_site, site_config);
+    sEx(`ln -fs ${available_site} ${enabled_site}`);
+    sEx('service nginx restart');
+}
+
+
+/**
+ * @param {Build} build
+ * @param {Runner} runner
+ * */
 function configureApacheSite(build, runner){
     let site_config = Handlebars.compile(fs.readFileSync(__dirname+'/templates/apache-site.conf.hbs').toString())({build, runner});
     let available_site = `/etc/apache2/sites-available/${build.qualifiedName}.conf`;
@@ -14,6 +28,7 @@ function configureApacheSite(build, runner){
     fs.writeFileSync(available_site, site_config);
     sEx(`ln -fs ${available_site} ${enabled_site}`);
     sEx('service apache2 restart');
+    configureNginxLink(build, runner);
 }
 
 
