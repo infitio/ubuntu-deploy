@@ -15,7 +15,7 @@
       },
       "env": {
         "ENVIRONMENT": "production",
-        "STATIC_HOST": "http://statix-alpha.coromande.biz",
+        "STATIC_HOST": "http://statix-alpha.coromandel.biz",
         "MEDIA_HOST": "http://media-alpha.coromandel.biz"
       },
       "deployments": {
