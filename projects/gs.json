@@ -21,6 +21,7 @@
       "deployments": {
         "default": {
           "port": 80,
+          "proxy_port": 8084,
           "server_name": "http://live.gromorshakti.coromandel.biz",
           "env": {
             "DB_DSN": "gromorshakti-production",
@@ -29,6 +30,7 @@
         },
         "dev": {
           "port": 80,
+          "proxy_port": 8085,
           "server_name": "http://dev.gromorshakti.coromandel.biz",
           "env": {
             "DB_DSN": "gromorshakti-dev",
@@ -37,6 +39,7 @@
         },
         "uat": {
           "port": 80,
+          "proxy_port": 8086,
           "server_name": "http://uat.gromorshakti.coromandel.biz",
           "env": {
             "DB_DSN": "gromorshakti-uat",

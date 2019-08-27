@@ -9,6 +9,7 @@ class Deployment{
     }
 
     get port(){ return this.deployment_config.port || 80; }
+    get proxyPort(){ return this.deployment_config.proxy_port || 8080; }
     get serverName(){ return this.deployment_config.server_name; }
     get env(){ return this.deployment_config.env; }
 
