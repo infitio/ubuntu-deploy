@@ -24,7 +24,7 @@
           "server_name": "http://live.gromorshakti.coromandel.biz",
           "env": {
             "DB_DSN": "gromorshakti-production",
-            "DB_NAME": "gromorshakti"
+            "DB_NAME": "GromorShakti"
           }
         },
         "dev": {
@@ -32,7 +32,7 @@
           "server_name": "http://dev.gromorshakti.coromandel.biz",
           "env": {
             "DB_DSN": "gromorshakti-dev",
-            "DB_NAME": "gromorshakti-dev"
+            "DB_NAME": "GromorShakti"
           }
         },
         "uat": {
@@ -40,7 +40,7 @@
           "server_name": "http://uat.gromorshakti.coromandel.biz",
           "env": {
             "DB_DSN": "gromorshakti-uat",
-            "DB_NAME": "gromorshakti-uat"
+            "DB_NAME": "GromorShakti"
           }
         }
       }
