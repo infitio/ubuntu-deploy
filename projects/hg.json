@@ -23,7 +23,7 @@
         "default": {
           "port": 80,
           "proxy_port": 8081,
-          "server_name": "http://hellogromor.coromandel.biz",
+          "server_name": "hellogromor.coromandel.biz",
           "env": {
             "DB_DSN": "hellogromor-production",
             "DB_NAME": "HelloGromor"
@@ -32,7 +32,7 @@
         "dev": {
           "port": 80,
           "proxy_port": 8082,
-          "server_name": "http://dev.hellogromor.coromandel.biz",
+          "server_name": "dev.hellogromor.coromandel.biz",
           "env": {
             "DB_DSN": "hellogromor-dev",
             "DB_NAME": "HelloGromor"
@@ -41,7 +41,7 @@
         "uat": {
           "port": 80,
           "proxy_port": 8083,
-          "server_name": "http://uat.hellogromor.coromandel.biz",
+          "server_name": "uat.hellogromor.coromandel.biz",
           "env": {
             "DB_DSN": "hellogromor-uat",
             "DB_NAME": "HelloGromor"
