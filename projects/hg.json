@@ -10,6 +10,7 @@
       "tasks": {
         "cron": {
           "frequency": "*/5 * * * *",
+          "username": "support",
           "management_command": "runcrons"
         }
       },
