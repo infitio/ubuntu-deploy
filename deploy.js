@@ -18,7 +18,11 @@ function writeEnvFile(build){
     let contents = [];
     if(build.env){
         for(let [k, v] of Object.entries(build.deployment.env)){
-            contents.push(k+'='+v);
+            if(v.indexOf('"')===-1){
+                contents.push(`${k}='${v}'`);
+            }else{
+                contents.push(`${k}="${v}"`);
+            }
         }
     }
     fs.writeFileSync(build.envFile, contents.join('\n'));
