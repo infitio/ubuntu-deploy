@@ -33,7 +33,10 @@ class Build{
 
     get appFile(){ return Handlebars.compile(this.build_config.app_file)({version:this.project.version}); }
 
-    get deployment(){ return new Deployment(this.build_config.deployments[this.project.deploymentName]); }
+    get deployment(){
+        console.log("11, ", this.build_config.deployments[this.project.deploymentName]);
+        return new Deployment(this.build_config.deployments[this.project.deploymentName]);
+    }
 
     get buildFilePath(){
         return `${this.project.buildsFolder}/${this.buildName}-v${this.project.version}-${now.format('YYYY-MM-DD_HH-mm-ss')}.zip`
