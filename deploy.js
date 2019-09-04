@@ -14,7 +14,7 @@ function setupVenv(venv_folder){
  * @param {Build} build
  * */
 function writeEnvFile(build){
-    if(fs.existsSync(build.envFile)) return;
+    // if(fs.existsSync(build.envFile)) return;
     let contents = [];
     if(build.env){
         let env = Object.assign({}, build.env, build.deployment.env);
@@ -53,14 +53,4 @@ async function deploy(runner){
     }
 }
 
-/**
- * @param {Runner} runner
- * */
-async function postDeploy(runner){
-    let build = runner.project.getBuild(runner.runner_config.args.build);
-    installDependencies(build);
-}
-
-module.exports = {
-    deploy, postDeploy
-};
+module.exports = deploy;
