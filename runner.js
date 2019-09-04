@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 class Runner{
 
     constructor(runner_config){
+        console.log("runner_config .>>> \n\n", runner_config, "\n\n<<<<<<<\n\n");
         this.runner_config = runner_config;
         this.base_folder = '/opt/grackn/';
         this.static_base_folder = '/media/grackn/static/';
