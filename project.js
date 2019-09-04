@@ -11,7 +11,7 @@ class Deployment{
     get port(){ return this.deployment_config.port || 80; }
     get proxyPort(){ return this.deployment_config.proxy_port || 8080; }
     get serverName(){ return this.deployment_config.server_name; }
-    get env(){ return this.deployment_config.env; }
+    get env(){ return Object.assign({}, this.build.env, this.deployment_config.env); }
 
     get is80Port(){ return this.port === 80; }
 
@@ -34,7 +34,6 @@ class Build{
     get appFile(){ return Handlebars.compile(this.build_config.app_file)({version:this.project.version}); }
 
     get deployment(){
-        console.log("11, ", this.build_config.deployments[this.project.deploymentName]);
         return new Deployment(this.build_config.deployments[this.project.deploymentName]);
     }
 
