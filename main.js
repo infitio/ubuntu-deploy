@@ -15,7 +15,7 @@ async function run(){
         ${runner.project.builds.map(build => {
         `Name: ${build.buildName}
 Deployment: ${build.deploymentName}
-Environment: ${build.deployment.env?JSON.stringify(build.deployment.env, null, 2):'-'}`    
+Environment: ${build.isDjango?JSON.stringify(build.deployment.env, null, 2):'-'}`    
     }).join('\n\t\t---\n')}
     `);
 

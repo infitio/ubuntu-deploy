@@ -34,7 +34,7 @@ class Build{
     get appFile(){ return Handlebars.compile(this.build_config.app_file)({version:this.project.version}); }
 
     get deployment(){
-        return new Deployment(this.build_config.deployments[this.project.deploymentName]);
+        return new Deployment(this.build_config.deployments[this.project.deploymentName], this);
     }
 
     get buildFilePath(){
