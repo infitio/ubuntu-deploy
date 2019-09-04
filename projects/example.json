@@ -1,0 +1,59 @@
+{
+  "name": "Example",
+  "vcs_identifier": "my-gitlab-group/my-gitlab-subgroup/my-gitlab-project-path",
+  "builds": [
+    {
+      "type": "django",
+      "name": "server",
+      "wsgi_relative_path": "my-django-default-app-name/wsgi.py",
+      "app_file": "bin/ex_v{{version}}.zip",
+      "tasks": {
+        "cron": {
+          "frequency": "*/5 * * * *",
+          "username": "support",
+          "management_command": "runcrons"
+        }
+      },
+      "env": {
+        "ENVIRONMENT": "production",
+        "STATIC_HOST": "http://static.example.com",
+        "STATIC_HOST_LOCAL": "http://localhost:2000",
+        "MEDIA_HOST": "http://media.xyzw.io"
+      },
+      "deployments": {
+        "default": {
+          "port": 80,
+          "proxy_port": 8081,
+          "server_name": "dashboard.example.com",
+          "env": {
+            "DB_DSN": "example-production",
+            "DB_NAME": "ExamPle"
+          }
+        },
+        "alpha": {
+          "port": 80,
+          "proxy_port": 8082,
+          "server_name": "alpha.example.com",
+          "env": {
+            "DB_DSN": "example-dev",
+            "DB_NAME": "ExamPle"
+          }
+        },
+        "beta": {
+          "port": 80,
+          "proxy_port": 8083,
+          "server_name": "beta.example.com",
+          "env": {
+            "DB_DSN": "example-uat",
+            "DB_NAME": "ExamPle"
+          }
+        }
+      }
+    },
+    {
+      "type": "adhara",
+      "name": "web",
+      "app_file": "bin/ex-web_v{{version}}.zip"
+    }
+  ]
+}

@@ -5,9 +5,9 @@ let parser = new ArgumentParser({
     description: 'Pull suite'
 });
 
-parser.addArgument([ '-p', '--project_code' ], {
+parser.addArgument([ '-p', '--project_conf' ], {
     required: true,
-    help: 'project code: one among: gs, hg, is'
+    help: 'project config file: project configuration file'
 });
 
 parser.addArgument([ '-d', '--deployment' ], {

@@ -10,7 +10,7 @@ class Runner{
         this.base_folder = '/opt/grackn/';
         this.static_base_folder = '/media/grackn/static/';
         this.media_base_folder = '/media/grackn/media/';
-        let project_config = require(`./projects/${runner_config.args.project_code}.json`);
+        let project_config = require(runner_config.args.project_conf);
         this.project = new Project(project_config, this);
         this.vcs = new VCSHandler({
             branch: runner_config.args.branch,
