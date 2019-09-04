@@ -9,6 +9,16 @@ const Runner = require('./runner');
 async function run(){
     let runner = new Runner({args});
 
+    console.log(`Setting up instance for ${runner.project.name}:
+    environment: ${runner.project.deploymentName}
+    builds: 
+        ${runner.project.builds.map(build => {
+        `Name: ${build.buildName}
+Deployment: ${build.deploymentName}
+Environment: ${build.deployment.env?JSON.stringify(build.deployment.env, null, 2):'-'}`    
+    }).join('\n\t\t---\n')}
+    `);
+
     console.log("setup...");
     setup(runner);
 
