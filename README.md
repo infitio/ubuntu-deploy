@@ -1,1 +1,9 @@
-Ngnix ref: https://medium.com/@jgefroh/a-guide-to-using-nginx-for-static-websites-d96a9d034940
+### Description
+
+Automates hosting from
+
+### Usage
+
+node main -t my-gitlab-token -d deployment-name -p /path/to/my-project-conf.json
+
+see `node main --help for more options`

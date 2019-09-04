@@ -40,17 +40,18 @@ parser.addArgument([ '-t', '--token' ], {
     help: 'Gitlab private token for authorization'
 });
 
-parser.addArgument([ '-s', '--stage' ], {
+parser.addArgument(['-r', '--runas'], {
     required: false,
-    defaultValue: 1,
-    help: 'build stage: 1,2,3'
+    default: "root",
+    help: 'username of the user as whom the WSGI process has to be run',
 });
 
-parser.addArgument([ '-u', '--build' ], {
-    required: false,
-    defaultValue: '',
-    help: 'build name form builds list'
-});
+
+// parser.addArgument([ '-u', '--build' ], {
+//     required: false,
+//     defaultValue: '',
+//     help: 'build name form builds list'
+// });
 
 let args = parser.parseArgs();
 

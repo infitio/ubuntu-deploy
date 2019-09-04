@@ -1,12 +1,14 @@
 {
   "name": "Example",
   "vcs_identifier": "my-gitlab-group/my-gitlab-subgroup/my-gitlab-project-path",
+  "run_as": "a-linux-username",
   "builds": [
     {
       "type": "django",
       "name": "server",
       "wsgi_relative_path": "my-django-default-app-name/wsgi.py",
       "app_file": "bin/ex_v{{version}}.zip",
+      "job_name": "my-gitlab-job-name-from-which-app_file-artifact-needs-to-be-downloaded",
       "tasks": {
         "cron": {
           "frequency": "*/5 * * * *",

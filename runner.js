@@ -20,12 +20,11 @@ class Runner{
             gitlab_api: runner_config.args.gitlab_api
         });
         this.branch = runner_config.args.branch;
-        this.job_name = 'build_job';
     }
 
     get runAs(){
         let username = os.userInfo().username;
-        if(username==="root") return "support";
+        if(username==="root") return this.runner_config.args.runas || project_config.run_as;
         return username;
     }
 
