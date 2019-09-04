@@ -24,7 +24,7 @@ class Runner{
 
     get runAs(){
         let username = os.userInfo().username;
-        if(username==="root") return this.runner_config.args.runas || project_config.run_as;
+        if(username==="root") return this.runner_config.args.runas || this.project.project_config.run_as;
         return username;
     }
 
