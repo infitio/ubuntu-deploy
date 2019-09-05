@@ -18,6 +18,7 @@ function writeEnvFile(build){
     let contents = [];
     if(build.env){
         for(let [k, v] of Object.entries(build.deployment.env)){
+            console.log("v>>>>>", v, v.indexOf);
             if(v.indexOf('"')===-1){
                 contents.push(`${k}='${v}'`);
             }else{
