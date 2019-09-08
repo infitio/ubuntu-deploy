@@ -3,5 +3,6 @@ server {
     server_name {{build.deployment.serverName}};
     location / {
         proxy_pass http://127.0.0.1:{{build.deployment.proxyPort}};
+        proxy_set_header Host $http_host;
     }
 }

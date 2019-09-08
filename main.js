@@ -13,7 +13,7 @@ async function run(){
     Setting up instance for ${runner.project.name}:
         environment: ${runner.project.deploymentName}
         builds: ${runner.project.builds.length}
-    -------------------------------------------------------------`);
+-------------------------------------------------------------`);
     //${runner.project.builds.map(build => {
     //         `Name: ${build.buildName}
     // Deployment: ${build.deploymentName}
