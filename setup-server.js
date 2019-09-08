@@ -53,7 +53,7 @@ function createCronJobs(build){
         if(build.tasks.cron){
             fs.writeFileSync(
                 `/etc/cron.d/${build.qualifiedName}`,
-                `cd ${build.deployPath} && ${build.tasks.cron.frequency} ${build.tasks.cron.username} ${build.pythonExecutable} manage.py ${build.tasks.cron.management_command} >> ${build.project.logsFolder}/cronjobs.log\n`
+                `${build.tasks.cron.frequency} ${build.tasks.cron.username} cd ${build.deployPath} && ${build.pythonExecutable} manage.py ${build.tasks.cron.management_command} >> ${build.project.logsFolder}/cronjobs.log\n`
             )
         }
     }
