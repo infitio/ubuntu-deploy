@@ -3,8 +3,9 @@ Listen {{build.deployment.proxyPort}}
     # ServerName {{build.deployment.serverName}}
     CustomLog {{build.project.logsFolder}}/accesslog common
     ErrorLog {{build.project.logsFolder}}/errorlog
-    WSGIDaemonProcess {{build.project.qualifiedName}} python-path={{build.deployPath}} python-home={{build.venvFolder}} home={{build.deployPath}} user={{runner.runAs}}
-    WSGIScriptAlias / {{build.wsgiPath}} process-group={{build.project.qualifiedName}} application-group=%{GLOBAL}
+    WSGIDaemonProcess {{build.project.sanitizedName}} python-path={{build.deployPath}} python-home={{build.venvFolder}} home={{build.deployPath}} user={{runner.runAs}}
+    WSGIProcessGroup {{build.project.sanitizedName}}
+    WSGIScriptAlias / {{build.wsgiPath}} process-group={{build.project.sanitizedName}} application-group=%{GLOBAL}
     <Directory {{build.deployPath}}>
     <Files wsgi.py>
         Require all granted

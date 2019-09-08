@@ -92,7 +92,7 @@ class Project{
             return this.name;
         }
     }
-
+    get sanitizedName(){ return this.qualifiedName.replace(/-/g, '_'); }
     get baseFolder(){ return this.runner.base_folder+this.qualifiedName; }
     get buildsFolder(){ return this.baseFolder+'/bundle'; }
     get currentFolder(){ return this.baseFolder+'/current'; }
