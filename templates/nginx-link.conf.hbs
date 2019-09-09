@@ -1,5 +1,5 @@
 server {
-    listen {{build.deployment.port}};
+    listen {{build.deployment.port}}{{#if build.deployment.nginxModules}} {{build.deployment.nginxModules}}{{/if}};
     server_name {{build.deployment.serverName}};
     {{#if build.deployment.isSSLEnabled}}ssl_certificate {{build.deployment.sslCert}};
     ssl_certificate_key {{build.deployment.sslCertKey}};

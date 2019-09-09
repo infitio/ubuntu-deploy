@@ -13,6 +13,7 @@ class Deployment{
     get sslCert(){ return this.ssl.cert; }
     get sslCertKey(){ return this.ssl.key; }
     get port(){ return this.deployment_config.port || (this.isSSLEnabled?443:80); }
+    get nginxModules(){ return this.isSSLEnabled?" ssl":""; }
     get proxyPort(){ return this.deployment_config.proxy_port || 8080; }
     get serverName(){ return this.deployment_config.server_name; }
     get env(){ return Object.assign({}, this.build.env, this.deployment_config.env); }
