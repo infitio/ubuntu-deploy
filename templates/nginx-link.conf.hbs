@@ -1,4 +1,10 @@
-server {
+{{#if build.deployment.isSSLEnabled}}server {
+    listen 80;
+    server_name {{build.deployment.serverName}};
+    return 301 https://$host$request_uri;
+}
+
+{{/if}}server {
     listen {{build.deployment.port}}{{#if build.deployment.nginxModules}} {{build.deployment.nginxModules}}{{/if}};
     server_name {{build.deployment.serverName}};
     {{#if build.deployment.isSSLEnabled}}ssl_certificate {{build.deployment.sslCert}};
