@@ -8,7 +8,11 @@ class Deployment{
         this.build = build;
     }
 
-    get port(){ return this.deployment_config.port || 80; }
+    get ssl(){ return this.deployment_config.ssl || this.build.build_config.ssl; }
+    get isSSLEnabled(){ return this.ssl.enabled===true; }
+    get sslCert(){ return this.ssl.cert; }
+    get sslCertKey(){ return this.ssl.key; }
+    get port(){ return this.deployment_config.port || (this.enableSSL?443:80); }
     get proxyPort(){ return this.deployment_config.proxy_port || 8080; }
     get serverName(){ return this.deployment_config.server_name; }
     get env(){ return Object.assign({}, this.build.env, this.deployment_config.env); }

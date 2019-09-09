@@ -22,9 +22,13 @@
         "STATIC_HOST_LOCAL": "http://localhost:2000",
         "MEDIA_HOST": "http://media.xyzw.io"
       },
+      "ssl": {
+        "enabled": true,
+        "cert": "/path/to/example.com.cert",
+        "key": "/path/to/example.com.rsa.key"
+      },
       "deployments": {
         "default": {
-          "port": 80,
           "proxy_port": 8081,
           "server_name": "dashboard.example.com",
           "env": {
@@ -34,6 +38,9 @@
         },
         "alpha": {
           "port": 80,
+          "ssl": {
+            "enabled": false
+          },
           "proxy_port": 8082,
           "server_name": "alpha.example.com",
           "env": {
@@ -42,7 +49,6 @@
           }
         },
         "beta": {
-          "port": 80,
           "proxy_port": 8083,
           "server_name": "beta.example.com",
           "env": {

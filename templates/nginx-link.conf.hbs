@@ -1,7 +1,9 @@
 server {
     listen {{build.deployment.port}};
     server_name {{build.deployment.serverName}};
-    location / {
+    {{#if build.deployment.isSSLEnabled}}ssl_certificate {{build.deployment.sslCert}};
+    ssl_certificate_key {{build.deployment.sslCertKey}};
+    {{/if}}location / {
         proxy_pass http://127.0.0.1:{{build.deployment.proxyPort}};
         proxy_set_header Host $http_host;
     }
