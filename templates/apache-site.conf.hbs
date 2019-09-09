@@ -1,19 +1,18 @@
 Listen {{build.deployment.proxyPort}}
 <VirtualHost 127.0.0.1:{{build.deployment.proxyPort}}>
     # ServerName {{build.deployment.serverName}}
-
-    {{#if build.deployment.isSSLEnabled}}
-    #SSLEngine on
-    #SSLCertificateFile    {{build.deployment.sslCert}}
-    #SSLCertificateKeyFile {{build.deployment.sslCertKey}}
-    {{/if}}
-
-
     CustomLog {{build.project.logsFolder}}/accesslog common
     ErrorLog {{build.project.logsFolder}}/errorlog
     WSGIDaemonProcess {{build.project.sanitizedName}} python-path={{build.deployPath}} python-home={{build.venvFolder}} home={{build.deployPath}} user={{runner.runAs}}
     WSGIProcessGroup {{build.project.sanitizedName}}
     WSGIScriptAlias / {{build.wsgiPath}} process-group={{build.project.sanitizedName}} application-group=%{GLOBAL}
+
+    {{!#if build.deployment.isSSLEnabled}}
+    {{!SSLEngine on
+    SSLCertificateFile    {{build.deployment.sslCert}}
+    {{!SSLCertificateKeyFile {{build.deployment.sslCertKey}}
+    {{!/if}}
+
     <Directory {{build.deployPath}}>
     <Files wsgi.py>
         Require all granted
