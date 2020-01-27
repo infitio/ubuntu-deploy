@@ -46,6 +46,11 @@ parser.addArgument(['-r', '--runas'], {
     help: 'username of the user as whom the WSGI process has to be run',
 });
 
+parser.addARgument(['-s', '--orgscope'], {
+    required: false,
+    defaultValue: 'grackn',
+    help: 'Folder scoping for setting up projects'
+});
 
 // parser.addArgument([ '-u', '--build' ], {
 //     required: false,
