@@ -46,9 +46,15 @@ parser.addArgument(['-r', '--runas'], {
     help: 'username of the user as whom the WSGI process has to be run',
 });
 
-parser.addArgument(['-s', '--orgscope'], {
+parser.addArgument(['-b', '--base_folder'], {
     required: false,
-    defaultValue: 'grackn',
+    defaultValue: '/opt/grackn/',
+    help: 'Folder scoping for setting up projects'
+});
+
+parser.addArgument(['-c', '--content_base_folder'], {
+    required: false,
+    defaultValue: '~/data/grackn/',
     help: 'Folder scoping for setting up projects'
 });
 

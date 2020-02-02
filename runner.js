@@ -7,10 +7,9 @@ class Runner{
 
     constructor(runner_config){
         this.runner_config = runner_config;
-        let orgScope = runner_config.args.orgScope || 'grackn';
-        this.base_folder = `/opt/${orgScope}/`;
-        this.static_base_folder = `/media/${orgScope}/static/`;
-        this.media_base_folder = `/media/${orgScope}/media/`;
+        this.base_folder = runner_config.args.base_folder || `/opt/grackn/`;
+        this.static_base_folder = `${runner_config.args.content_base_folder}static/`;
+        this.media_base_folder = `${runner_config.args.content_base_folder}media/`;
         let project_config = require(runner_config.args.project_conf);
         this.project = new Project(project_config, this);
         this.vcs = new VCSHandler({
