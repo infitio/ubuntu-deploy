@@ -19,7 +19,11 @@ function writeEnvFile(build){
     if(build.env){
         for(let [k, v] of Object.entries(build.deployment.env)){
             if(typeof v !== "string" || v.indexOf('"')===-1){
-                contents.push(`${k}='${v}'`);
+                if(v === null){
+                    contents.push(`${k}=`);
+                }else{
+                    contents.push(`${k}='${v}'`);
+                }
             }else{
                 contents.push(`${k}="${v}"`);
             }
