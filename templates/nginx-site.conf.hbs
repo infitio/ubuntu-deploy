@@ -4,6 +4,7 @@ server {
     root {{build.deployPath}};
     index index.html;
     #server_name {{build.deployment.serverName}};
+    add_header Strict-Transport-Security "max-age=31536000" always;
     location / {
         try_files $uri $uri/ =404;
     }
