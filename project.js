@@ -16,6 +16,7 @@ class Deployment{
     get nginxModules(){ return this.isSSLEnabled?" ssl":""; }
     get proxyPort(){ return this.deployment_config.proxy_port || 8080; }
     get serverName(){ return this.deployment_config.server_name; }
+    get headers(){ return this.deployment.config.headers; }
     get env(){ return Object.assign({}, this.build.env, this.deployment_config.env); }
 
     get is80Port(){ return this.port === 80; }
