@@ -1,6 +1,7 @@
 {{#if build.deployment.isSSLEnabled}}server {
     listen 80;
     server_name {{build.deployment.serverName}};
+    add_header Strict-Transport-Security "max-age=31536000" always;
     return 301 https://$host$request_uri;
 }
 
