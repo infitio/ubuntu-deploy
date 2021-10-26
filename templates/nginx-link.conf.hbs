@@ -8,7 +8,7 @@
     listen {{build.deployment.port}}{{#if build.deployment.nginxModules}} {{build.deployment.nginxModules}}{{/if}};
     server_name {{build.deployment.serverName}};
     {{#each build.deployment.headers}}
-    add_header "{{@key}}" "{{this}}";{{/each}}
+    add_header "{{@key}}" "{{{this}}}";{{/each}}
     {{#if build.deployment.isSSLEnabled}}ssl_certificate {{build.deployment.sslCert}};
     ssl_certificate_key {{build.deployment.sslCertKey}};
     {{/if}}location / {
