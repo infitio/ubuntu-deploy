@@ -7,7 +7,6 @@
 {{/if}}server {
     listen {{build.deployment.port}}{{#if build.deployment.nginxModules}} {{build.deployment.nginxModules}}{{/if}};
     server_name {{build.deployment.serverName}};
-    add_header "Content-Security-Policy" "default-src 'self'; script-src 'self' 'unsafe-inline' statix-alpha.coromandel.biz ajax.googleapis.com cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' statix-alpha.coromandel.biz; font-src 'self' statix-alpha.coromandel.biz; img-src 'self' statix-alpha.coromandel.biz";
     {{#each build.deployment.headers}}
     add_header "{{@key}}" "{{this}}";{{/each}}
     {{#if build.deployment.isSSLEnabled}}ssl_certificate {{build.deployment.sslCert}};
