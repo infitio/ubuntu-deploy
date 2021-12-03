@@ -10,6 +10,7 @@
     server_name {{build.deployment.serverName}};
     {{#each build.deployment.headers}}
     add_header "{{@key}}" "{{{this}}}";{{/each}}
+    add_header Strict-Transport-Security "max-age=31536000" always;
     {{#if build.deployment.isSSLEnabled}}ssl_certificate {{build.deployment.sslCert}};
     ssl_certificate_key {{build.deployment.sslCertKey}};
     {{/if}}location / {
