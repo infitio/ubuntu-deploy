@@ -37,7 +37,10 @@
           },
           "headers": {
             "X-XSS-Protection": "1; mode=block"
-          }
+          },
+          "other_directives": [
+            "proxy_read_timeout 120s"
+          ]
         },
         "alpha": {
           "port": 80,
